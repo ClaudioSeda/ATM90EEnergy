@@ -1,0 +1,56 @@
+Para um circuito de medição com ATM90E36A usando transformadores ZMPT101B e transformadores de corrente, vou recomendar valores específicos para medição de sistemas 127V e 220V AC.
+Valores para Circuito de Medição de Tensão (usando ZMPT101B)
+O ZMPT101B é uma boa escolha pois já fornece isolação galvânica. Para conectá-lo ao ATM90E36A:
+Para entrada de 127V AC:
+
+Resistor de carga para o secundário do ZMPT101B: 100kΩ (ajustável por trimmer)
+Resistor de polarização para o ponto médio: 10kΩ
+Capacitores de filtragem: 100nF (cerâmico)
+Divisor resistivo adicional para entrada do ATM90E36A: 10kΩ e 10kΩ (para criar referência de 1.65V)
+
+Para entrada de 220V AC:
+
+Resistor de carga para o secundário: 150kΩ (ajustável por trimmer)
+Os demais valores podem permanecer iguais aos da configuração de 127V
+
+Valores para Circuito de Medição de Corrente (usando TCs)
+Para TC com saída de 5A:
+
+Resistor de burden: 12Ω (0.5W, 0.1% de precisão)
+Resistores do filtro diferencial: 1kΩ em cada linha
+Capacitor de filtragem: 100nF (cerâmico)
+
+Para TC com saída de 1A:
+
+Resistor de burden: 51Ω (0.25W, 0.1% de precisão)
+Demais valores iguais à configuração de 5A
+
+Componentes Adicionais
+Cristal:
+
+Cristal de 8.192MHz (recomendado pela Microchip para o ATM90E36A)
+Capacitores para o cristal: 22pF (cerâmico NPO/C0G)
+
+Filtros de Alimentação:
+
+Capacitores de bypass: 100nF próximo a cada pino de alimentação
+Capacitores de bulk: 10μF (eletrolítico ou tântalo) para cada seção de alimentação
+Ferrite beads: 100Ω @ 100MHz entre seções digital e analógica
+
+Para a interface SPI com ESP32:
+
+Resistores de pull-up para CS: 4.7kΩ
+Resistores série para proteção: 100Ω em cada linha
+
+Referência de tensão:
+
+Considere um regulador de precisão (REF3325) para fornecer uma referência de tensão estável de 2.5V
+
+Observações Importantes
+
+Calibração: Os valores exatos dos resistores de burden e divisores podem precisar de ajuste fino durante a calibração.
+Valores dos TCs: Certifique-se de que os TCs estão dimensionados adequadamente para a corrente máxima do seu sistema.
+Dissipação de potência: Verifique se os resistores de burden estão dimensionados para a potência adequada.
+Proteção adicional: Considere adicionar diodos TVS nas entradas para proteção contra surtos.
+
+Estes valores são um bom ponto de partida, mas podem precisar de ajustes baseados nos transformadores específicos que você utilizará e nas condições da sua instalação.
